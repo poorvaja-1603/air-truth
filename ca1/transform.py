@@ -217,3 +217,4 @@ def conform_and_merge_datasets(openaq_daily_df, mendeley_df):
     # Sort deterministically
     merged = merged.sort_values(["date", "station_id", "source"]).reset_index(drop=True)
     return merged
+

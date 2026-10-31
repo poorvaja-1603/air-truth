@@ -76,3 +76,4 @@ POLLUTANTS = ["pm25", "pm10", "no2"]
 # Extraction window: last 30 days
 END_DATE = datetime.now(timezone.utc)
 START_DATE = END_DATE - timedelta(days=30)
+

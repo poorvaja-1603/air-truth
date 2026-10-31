@@ -62,3 +62,4 @@ def validate_dataset(df: pd.DataFrame) -> bool:
     logger.info("  PM2.5 Exceedances (> 60 ug/m3): %s / %s", pm25_exceed, df["pm25"].notna().sum())
     logger.info("  PM10 Exceedances (> 100 ug/m3): %s / %s", pm10_exceed, df["pm10"].notna().sum())
     return True
+

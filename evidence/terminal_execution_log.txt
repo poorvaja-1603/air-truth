@@ -1,0 +1,170 @@
+2026-10-31 22:00:01,123 [INFO] =================================================================
+2026-10-31 22:00:01,124 [INFO] AIRTRUTH MUMBAI - CA1 DATA PIPELINE EXECUTION
+2026-10-31 22:00:01,124 [INFO] =================================================================
+2026-10-31 22:00:01,124 [INFO] [STAGE 0] Loading pollutant thresholds...
+2026-10-31 22:00:01,137 [INFO]   Thresholds loaded: {'pm25': 60.0, 'pm10': 100.0, 'no2': 80.0, 'so2': 80.0, 'co': 2000.0, 'o3': 100.0}
+2026-10-31 22:00:01,138 [INFO] 
+[STAGE 1] Ingesting multi-source data...
+2026-10-31 22:00:01,139 [INFO] Extracting OpenAQ readings between 2026-10-01T00:00:00Z and 2026-10-31T23:59:59Z
+2026-10-31 22:00:01,968 [INFO] Querying sensors for station 6945 (Kurla, Mumbai - MPCB)
+2026-10-31 22:00:06,152 [INFO]   Sensor 12235834 (pm25): extracted 582 hourly records
+2026-10-31 22:00:09,667 [INFO]   Sensor 12235833 (pm10): extracted 582 hourly records
+2026-10-31 22:00:12,748 [INFO]   Sensor 12235831 (no2): extracted 602 hourly records
+2026-10-31 22:00:14,179 [INFO] Querying sensors for station 6967 (Sion, Mumbai - MPCB)
+2026-10-31 22:00:16,280 [INFO]   Sensor 12243930 (pm25): extracted 544 hourly records
+2026-10-31 22:00:19,124 [INFO]   Sensor 12243929 (pm10): extracted 544 hourly records
+2026-10-31 22:00:24,030 [INFO]   Sensor 12243927 (no2): extracted 531 hourly records
+2026-10-31 22:00:27,225 [INFO] Querying sensors for station 3409482 (Bandra Kurla Complex, Mumbai - MPCB)
+2026-10-31 22:00:29,691 [INFO]   Sensor 12238375 (pm25): extracted 549 hourly records
+2026-10-31 22:00:37,526 [INFO]   Sensor 12238374 (pm10): extracted 543 hourly records
+2026-10-31 22:00:43,213 [INFO]   Sensor 12238372 (no2): extracted 523 hourly records
+2026-10-31 22:00:48,241 [INFO] Querying sensors for station 6927 (Colaba, Mumbai - MPCB)
+2026-10-31 22:00:50,557 [INFO]   Sensor 12235926 (pm25): extracted 506 hourly records
+2026-10-31 22:00:54,448 [INFO]   Sensor 12235925 (pm10): extracted 506 hourly records
+2026-10-31 22:00:57,693 [INFO]   Sensor 12235923 (no2): extracted 505 hourly records
+2026-10-31 22:00:58,869 [INFO] Querying sensors for station 3409323 (Worli, Mumbai - MPCB)
+2026-10-31 22:01:01,140 [INFO]   Sensor 12235914 (pm25): extracted 571 hourly records
+2026-10-31 22:01:04,168 [INFO]   Sensor 12235913 (pm10): extracted 560 hourly records
+2026-10-31 22:01:08,325 [INFO]   Sensor 12235911 (no2): extracted 532 hourly records
+2026-10-31 22:01:10,013 [INFO] Extraction completed: 8180 total hourly records extracted across 5 stations
+2026-10-31 22:01:10,018 [INFO]   Extracted 8180 raw hourly readings from OpenAQ API
+2026-10-31 22:01:10,018 [INFO] 
+[STAGE 2] Transforming & harmonising datasets...
+2026-10-31 22:01:10,060 [INFO]   Parsed 8180 OpenAQ hourly rows into structured DataFrame
+2026-10-31 22:01:10,750 [INFO]   Cleaned OpenAQ hourly rows: 8180 (imputed gaps count: 0)
+2026-10-31 22:01:10,799 [INFO]   Aggregated OpenAQ to daily level: 133 station-days (18/24h rule applied)
+2026-10-31 22:01:10,820 [INFO] Loaded 5437 historical records from all_stations_combined.csv
+2026-10-31 22:01:10,841 [INFO]   Loaded 5437 Mendeley historical station-days
+2026-10-31 22:01:10,855 [INFO]   Conformed unified dataset: 5570 total station-days across 2019-06-18 to 2026-10-31
+2026-10-31 22:01:10,855 [INFO] 
+[STAGE 3] Running data contract & quality validations...
+2026-10-31 22:01:10,856 [INFO] Starting pre-upload validation on 5570 rows...
+2026-10-31 22:01:10,859 [INFO] Validation passed successfully:
+2026-10-31 22:01:10,859 [INFO]   Total rows: 5570
+2026-10-31 22:01:10,859 [INFO]   Date range: 2019-06-18 to 2026-10-31
+2026-10-31 22:01:10,860 [INFO]   Stations represented: 7 (['Kurla, Mumbai - MPCB', 'Chhatrapati Shivaji Intl. Airport (T2), Mumbai - MPCB', 'Sion, Mumbai - MPCB', 'Bandra, Mumbai - MPCB', 'Bandra Kurla Complex, Mumbai - MPCB', 'Worli, Mumbai - MPCB', 'Colaba, Mumbai - MPCB'])
+2026-10-31 22:01:10,861 [INFO]   PM2.5 Exceedances (> 60 ug/m3): 780 / 3023
+2026-10-31 22:01:10,861 [INFO]   PM10 Exceedances (> 100 ug/m3): 1383 / 2951
+2026-10-31 22:01:10,861 [INFO] 
+[STAGE 4] Writing partitioned Parquet and uploading to AWS S3...
+2026-10-31 22:01:10,950 [INFO] Saved local partition year=2019/month=06 (30 rows, 10501 bytes)
+2026-10-31 22:01:13,038 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2019/month=06/mumbai_daily_air_quality.parquet (size=10501 bytes, modified=2026-10-31 16:31:12+00:00)
+2026-10-31 22:01:13,065 [INFO] Saved local partition year=2019/month=07 (93 rows, 11570 bytes)
+2026-10-31 22:01:13,842 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2019/month=07/mumbai_daily_air_quality.parquet (size=11570 bytes, modified=2026-10-31 16:31:13+00:00)
+2026-10-31 22:01:13,860 [INFO] Saved local partition year=2019/month=08 (93 rows, 11563 bytes)
+2026-10-31 22:01:14,601 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2019/month=08/mumbai_daily_air_quality.parquet (size=11563 bytes, modified=2026-10-31 16:31:14+00:00)
+2026-10-31 22:01:14,617 [INFO] Saved local partition year=2019/month=09 (90 rows, 11567 bytes)
+2026-10-31 22:01:15,483 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2019/month=09/mumbai_daily_air_quality.parquet (size=11567 bytes, modified=2026-10-31 16:31:15+00:00)
+2026-10-31 22:01:15,497 [INFO] Saved local partition year=2019/month=10 (93 rows, 11663 bytes)
+2026-10-31 22:01:16,300 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2019/month=10/mumbai_daily_air_quality.parquet (size=11663 bytes, modified=2026-10-31 16:31:16+00:00)
+2026-10-31 22:01:16,318 [INFO] Saved local partition year=2019/month=11 (90 rows, 11367 bytes)
+2026-10-31 22:01:17,093 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2019/month=11/mumbai_daily_air_quality.parquet (size=11367 bytes, modified=2026-10-31 16:31:17+00:00)
+2026-10-31 22:01:17,114 [INFO] Saved local partition year=2019/month=12 (93 rows, 11651 bytes)
+2026-10-31 22:01:17,933 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2019/month=12/mumbai_daily_air_quality.parquet (size=11651 bytes, modified=2026-10-31 16:31:17+00:00)
+2026-10-31 22:01:17,956 [INFO] Saved local partition year=2020/month=01 (116 rows, 12072 bytes)
+2026-10-31 22:01:18,754 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2020/month=01/mumbai_daily_air_quality.parquet (size=12072 bytes, modified=2026-10-31 16:31:18+00:00)
+2026-10-31 22:01:18,774 [INFO] Saved local partition year=2020/month=02 (116 rows, 12042 bytes)
+2026-10-31 22:01:19,668 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2020/month=02/mumbai_daily_air_quality.parquet (size=12042 bytes, modified=2026-10-31 16:31:19+00:00)
+2026-10-31 22:01:19,692 [INFO] Saved local partition year=2020/month=03 (124 rows, 12219 bytes)
+2026-10-31 22:01:20,386 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2020/month=03/mumbai_daily_air_quality.parquet (size=12219 bytes, modified=2026-10-31 16:31:20+00:00)
+2026-10-31 22:01:20,419 [INFO] Saved local partition year=2020/month=04 (120 rows, 11733 bytes)
+2026-10-31 22:01:21,313 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2020/month=04/mumbai_daily_air_quality.parquet (size=11733 bytes, modified=2026-10-31 16:31:21+00:00)
+2026-10-31 22:01:21,333 [INFO] Saved local partition year=2020/month=05 (124 rows, 11997 bytes)
+2026-10-31 22:01:22,036 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2020/month=05/mumbai_daily_air_quality.parquet (size=11997 bytes, modified=2026-10-31 16:31:22+00:00)
+2026-10-31 22:01:22,049 [INFO] Saved local partition year=2020/month=06 (120 rows, 11812 bytes)
+2026-10-31 22:01:22,776 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2020/month=06/mumbai_daily_air_quality.parquet (size=11812 bytes, modified=2026-10-31 16:31:22+00:00)
+2026-10-31 22:01:22,788 [INFO] Saved local partition year=2020/month=07 (124 rows, 11875 bytes)
+2026-10-31 22:01:23,877 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2020/month=07/mumbai_daily_air_quality.parquet (size=11875 bytes, modified=2026-10-31 16:31:23+00:00)
+2026-10-31 22:01:23,895 [INFO] Saved local partition year=2020/month=08 (124 rows, 11778 bytes)
+2026-10-31 22:01:24,802 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2020/month=08/mumbai_daily_air_quality.parquet (size=11778 bytes, modified=2026-10-31 16:31:24+00:00)
+2026-10-31 22:01:24,818 [INFO] Saved local partition year=2020/month=09 (120 rows, 11653 bytes)
+2026-10-31 22:01:25,501 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2020/month=09/mumbai_daily_air_quality.parquet (size=11653 bytes, modified=2026-10-31 16:31:25+00:00)
+2026-10-31 22:01:25,526 [INFO] Saved local partition year=2020/month=10 (124 rows, 11789 bytes)
+2026-10-31 22:01:26,310 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2020/month=10/mumbai_daily_air_quality.parquet (size=11789 bytes, modified=2026-10-31 16:31:26+00:00)
+2026-10-31 22:01:26,337 [INFO] Saved local partition year=2020/month=11 (120 rows, 11901 bytes)
+2026-10-31 22:01:27,053 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2020/month=11/mumbai_daily_air_quality.parquet (size=11901 bytes, modified=2026-10-31 16:31:27+00:00)
+2026-10-31 22:01:27,067 [INFO] Saved local partition year=2020/month=12 (124 rows, 11903 bytes)
+2026-10-31 22:01:27,885 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2020/month=12/mumbai_daily_air_quality.parquet (size=11903 bytes, modified=2026-10-31 16:31:27+00:00)
+2026-10-31 22:01:27,917 [INFO] Saved local partition year=2021/month=01 (124 rows, 11889 bytes)
+2026-10-31 22:01:28,691 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2021/month=01/mumbai_daily_air_quality.parquet (size=11889 bytes, modified=2026-10-31 16:31:28+00:00)
+2026-10-31 22:01:28,712 [INFO] Saved local partition year=2021/month=02 (112 rows, 11545 bytes)
+2026-10-31 22:01:29,458 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2021/month=02/mumbai_daily_air_quality.parquet (size=11545 bytes, modified=2026-10-31 16:31:29+00:00)
+2026-10-31 22:01:29,478 [INFO] Saved local partition year=2021/month=03 (124 rows, 11962 bytes)
+2026-10-31 22:01:30,246 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2021/month=03/mumbai_daily_air_quality.parquet (size=11962 bytes, modified=2026-10-31 16:31:30+00:00)
+2026-10-31 22:01:30,269 [INFO] Saved local partition year=2021/month=04 (120 rows, 11604 bytes)
+2026-10-31 22:01:31,105 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2021/month=04/mumbai_daily_air_quality.parquet (size=11604 bytes, modified=2026-10-31 16:31:30+00:00)
+2026-10-31 22:01:31,141 [INFO] Saved local partition year=2021/month=05 (124 rows, 11478 bytes)
+2026-10-31 22:01:31,932 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2021/month=05/mumbai_daily_air_quality.parquet (size=11478 bytes, modified=2026-10-31 16:31:31+00:00)
+2026-10-31 22:01:31,947 [INFO] Saved local partition year=2021/month=06 (120 rows, 11476 bytes)
+2026-10-31 22:01:32,688 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2021/month=06/mumbai_daily_air_quality.parquet (size=11476 bytes, modified=2026-10-31 16:31:32+00:00)
+2026-10-31 22:01:32,711 [INFO] Saved local partition year=2021/month=07 (124 rows, 11429 bytes)
+2026-10-31 22:01:33,412 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2021/month=07/mumbai_daily_air_quality.parquet (size=11429 bytes, modified=2026-10-31 16:31:33+00:00)
+2026-10-31 22:01:33,437 [INFO] Saved local partition year=2021/month=08 (124 rows, 10962 bytes)
+2026-10-31 22:01:34,168 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2021/month=08/mumbai_daily_air_quality.parquet (size=10962 bytes, modified=2026-10-31 16:31:34+00:00)
+2026-10-31 22:01:34,190 [INFO] Saved local partition year=2021/month=09 (120 rows, 11708 bytes)
+2026-10-31 22:01:34,968 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2021/month=09/mumbai_daily_air_quality.parquet (size=11708 bytes, modified=2026-10-31 16:31:34+00:00)
+2026-10-31 22:01:34,981 [INFO] Saved local partition year=2021/month=10 (124 rows, 11503 bytes)
+2026-10-31 22:01:35,886 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2021/month=10/mumbai_daily_air_quality.parquet (size=11503 bytes, modified=2026-10-31 16:31:35+00:00)
+2026-10-31 22:01:35,902 [INFO] Saved local partition year=2021/month=11 (120 rows, 11871 bytes)
+2026-10-31 22:01:36,637 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2021/month=11/mumbai_daily_air_quality.parquet (size=11871 bytes, modified=2026-10-31 16:31:36+00:00)
+2026-10-31 22:01:36,642 [INFO] Saved local partition year=2021/month=12 (117 rows, 11784 bytes)
+2026-10-31 22:01:37,404 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2021/month=12/mumbai_daily_air_quality.parquet (size=11784 bytes, modified=2026-10-31 16:31:37+00:00)
+2026-10-31 22:01:37,423 [INFO] Saved local partition year=2022/month=01 (93 rows, 11232 bytes)
+2026-10-31 22:01:38,248 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2022/month=01/mumbai_daily_air_quality.parquet (size=11232 bytes, modified=2026-10-31 16:31:38+00:00)
+2026-10-31 22:01:38,257 [INFO] Saved local partition year=2022/month=02 (84 rows, 10884 bytes)
+2026-10-31 22:01:38,950 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2022/month=02/mumbai_daily_air_quality.parquet (size=10884 bytes, modified=2026-10-31 16:31:38+00:00)
+2026-10-31 22:01:38,955 [INFO] Saved local partition year=2022/month=03 (93 rows, 11017 bytes)
+2026-10-31 22:01:39,856 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2022/month=03/mumbai_daily_air_quality.parquet (size=11017 bytes, modified=2026-10-31 16:31:39+00:00)
+2026-10-31 22:01:39,867 [INFO] Saved local partition year=2022/month=04 (90 rows, 11494 bytes)
+2026-10-31 22:01:40,671 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2022/month=04/mumbai_daily_air_quality.parquet (size=11494 bytes, modified=2026-10-31 16:31:40+00:00)
+2026-10-31 22:01:40,682 [INFO] Saved local partition year=2022/month=05 (93 rows, 11591 bytes)
+2026-10-31 22:01:41,448 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2022/month=05/mumbai_daily_air_quality.parquet (size=11591 bytes, modified=2026-10-31 16:31:41+00:00)
+2026-10-31 22:01:41,460 [INFO] Saved local partition year=2022/month=06 (90 rows, 11391 bytes)
+2026-10-31 22:01:42,166 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2022/month=06/mumbai_daily_air_quality.parquet (size=11391 bytes, modified=2026-10-31 16:31:42+00:00)
+2026-10-31 22:01:42,176 [INFO] Saved local partition year=2022/month=07 (93 rows, 11406 bytes)
+2026-10-31 22:01:43,026 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2022/month=07/mumbai_daily_air_quality.parquet (size=11406 bytes, modified=2026-10-31 16:31:42+00:00)
+2026-10-31 22:01:43,038 [INFO] Saved local partition year=2022/month=08 (93 rows, 10879 bytes)
+2026-10-31 22:01:43,733 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2022/month=08/mumbai_daily_air_quality.parquet (size=10879 bytes, modified=2026-10-31 16:31:43+00:00)
+2026-10-31 22:01:43,740 [INFO] Saved local partition year=2022/month=09 (90 rows, 11193 bytes)
+2026-10-31 22:01:44,481 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2022/month=09/mumbai_daily_air_quality.parquet (size=11193 bytes, modified=2026-10-31 16:31:44+00:00)
+2026-10-31 22:01:44,494 [INFO] Saved local partition year=2022/month=10 (93 rows, 11296 bytes)
+2026-10-31 22:01:45,304 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2022/month=10/mumbai_daily_air_quality.parquet (size=11296 bytes, modified=2026-10-31 16:31:45+00:00)
+2026-10-31 22:01:45,315 [INFO] Saved local partition year=2025/month=02 (32 rows, 10566 bytes)
+2026-10-31 22:01:46,148 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2025/month=02/mumbai_daily_air_quality.parquet (size=10566 bytes, modified=2026-10-31 16:31:46+00:00)
+2026-10-31 22:01:46,160 [INFO] Saved local partition year=2025/month=03 (93 rows, 11939 bytes)
+2026-10-31 22:01:46,879 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2025/month=03/mumbai_daily_air_quality.parquet (size=11939 bytes, modified=2026-10-31 16:31:46+00:00)
+2026-10-31 22:01:46,884 [INFO] Saved local partition year=2025/month=04 (90 rows, 11587 bytes)
+2026-10-31 22:01:47,738 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2025/month=04/mumbai_daily_air_quality.parquet (size=11587 bytes, modified=2026-10-31 16:31:47+00:00)
+2026-10-31 22:01:47,753 [INFO] Saved local partition year=2025/month=05 (93 rows, 11736 bytes)
+2026-10-31 22:01:48,453 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2025/month=05/mumbai_daily_air_quality.parquet (size=11736 bytes, modified=2026-10-31 16:31:48+00:00)
+2026-10-31 22:01:48,461 [INFO] Saved local partition year=2025/month=06 (90 rows, 11662 bytes)
+2026-10-31 22:01:49,168 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2025/month=06/mumbai_daily_air_quality.parquet (size=11662 bytes, modified=2026-10-31 16:31:49+00:00)
+2026-10-31 22:01:49,181 [INFO] Saved local partition year=2025/month=07 (93 rows, 11693 bytes)
+2026-10-31 22:01:49,900 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2025/month=07/mumbai_daily_air_quality.parquet (size=11693 bytes, modified=2026-10-31 16:31:49+00:00)
+2026-10-31 22:01:49,921 [INFO] Saved local partition year=2025/month=08 (93 rows, 11758 bytes)
+2026-10-31 22:01:50,638 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2025/month=08/mumbai_daily_air_quality.parquet (size=11758 bytes, modified=2026-10-31 16:31:50+00:00)
+2026-10-31 22:01:50,667 [INFO] Saved local partition year=2025/month=09 (90 rows, 11571 bytes)
+2026-10-31 22:01:51,398 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2025/month=09/mumbai_daily_air_quality.parquet (size=11571 bytes, modified=2026-10-31 16:31:51+00:00)
+2026-10-31 22:01:51,424 [INFO] Saved local partition year=2025/month=10 (93 rows, 11873 bytes)
+2026-10-31 22:01:52,141 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2025/month=10/mumbai_daily_air_quality.parquet (size=11873 bytes, modified=2026-10-31 16:31:52+00:00)
+2026-10-31 22:01:52,159 [INFO] Saved local partition year=2025/month=11 (90 rows, 11838 bytes)
+2026-10-31 22:01:54,015 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2025/month=11/mumbai_daily_air_quality.parquet (size=11838 bytes, modified=2026-10-31 16:31:53+00:00)
+2026-10-31 22:01:54,045 [INFO] Saved local partition year=2025/month=12 (93 rows, 11726 bytes)
+2026-10-31 22:01:54,908 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2025/month=12/mumbai_daily_air_quality.parquet (size=11726 bytes, modified=2026-10-31 16:31:54+00:00)
+2026-10-31 22:01:54,923 [INFO] Saved local partition year=2026/month=01 (84 rows, 11364 bytes)
+2026-10-31 22:01:55,828 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2026/month=01/mumbai_daily_air_quality.parquet (size=11364 bytes, modified=2026-10-31 16:31:55+00:00)
+2026-10-31 22:01:55,848 [INFO] Saved local partition year=2026/month=10 (133 rows, 13326 bytes)
+2026-10-31 22:01:56,699 [INFO]   Verified S3 object: s3://air-truth-de-ca1/processed_data/year=2026/month=10/mumbai_daily_air_quality.parquet (size=13326 bytes, modified=2026-10-31 16:31:56+00:00)
+2026-10-31 22:01:56,699 [INFO] Parquet storage completed: 54 partitions uploaded, 626889 total bytes
+2026-10-31 22:01:56,704 [INFO] 
+=================================================================
+2026-10-31 22:01:56,705 [INFO] EXECUTION SUMMARY - ALL CA1 MILESTONES COMPLETED SUCCESSFULLY
+2026-10-31 22:01:56,705 [INFO] =================================================================
+2026-10-31 22:01:56,705 [INFO]   Total Runtime: 115.58 seconds
+2026-10-31 22:01:56,705 [INFO]   OpenAQ API Raw Readings: 8180 rows
+2026-10-31 22:01:56,705 [INFO]   OpenAQ Cleaned Hourly:   8180 rows
+2026-10-31 22:01:56,705 [INFO]   OpenAQ Daily Aggregates: 133 rows
+2026-10-31 22:01:56,706 [INFO]   Mendeley Historical:     5437 rows
+2026-10-31 22:01:56,706 [INFO]   Final Conformed Dataset: 5570 rows
+2026-10-31 22:01:56,706 [INFO]   Partitions Uploaded:     54 monthly partitions to S3
+2026-10-31 22:01:56,706 [INFO] =================================================================

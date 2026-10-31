@@ -1,0 +1,85 @@
+=== AWS S3 CLOUD STORAGE PROOF ===
+Bucket Name: air-truth-de-ca1
+Region: us-east-1
+Total Processed Parquet Partitions: 54
+Total Raw JSON Objects: 22
+
+--- Processed Parquet Partitions (Hive-Style Partitioning) ---
+2026-10-31 16:31:12+00:00     10501 bytes  s3://air-truth-de-ca1/processed_data/year=2019/month=06/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:13+00:00     11570 bytes  s3://air-truth-de-ca1/processed_data/year=2019/month=07/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:14+00:00     11563 bytes  s3://air-truth-de-ca1/processed_data/year=2019/month=08/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:15+00:00     11567 bytes  s3://air-truth-de-ca1/processed_data/year=2019/month=09/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:16+00:00     11663 bytes  s3://air-truth-de-ca1/processed_data/year=2019/month=10/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:17+00:00     11367 bytes  s3://air-truth-de-ca1/processed_data/year=2019/month=11/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:17+00:00     11651 bytes  s3://air-truth-de-ca1/processed_data/year=2019/month=12/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:18+00:00     12072 bytes  s3://air-truth-de-ca1/processed_data/year=2020/month=01/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:19+00:00     12042 bytes  s3://air-truth-de-ca1/processed_data/year=2020/month=02/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:20+00:00     12219 bytes  s3://air-truth-de-ca1/processed_data/year=2020/month=03/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:21+00:00     11733 bytes  s3://air-truth-de-ca1/processed_data/year=2020/month=04/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:22+00:00     11997 bytes  s3://air-truth-de-ca1/processed_data/year=2020/month=05/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:22+00:00     11812 bytes  s3://air-truth-de-ca1/processed_data/year=2020/month=06/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:23+00:00     11875 bytes  s3://air-truth-de-ca1/processed_data/year=2020/month=07/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:24+00:00     11778 bytes  s3://air-truth-de-ca1/processed_data/year=2020/month=08/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:25+00:00     11653 bytes  s3://air-truth-de-ca1/processed_data/year=2020/month=09/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:26+00:00     11789 bytes  s3://air-truth-de-ca1/processed_data/year=2020/month=10/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:27+00:00     11901 bytes  s3://air-truth-de-ca1/processed_data/year=2020/month=11/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:27+00:00     11903 bytes  s3://air-truth-de-ca1/processed_data/year=2020/month=12/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:28+00:00     11889 bytes  s3://air-truth-de-ca1/processed_data/year=2021/month=01/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:29+00:00     11545 bytes  s3://air-truth-de-ca1/processed_data/year=2021/month=02/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:30+00:00     11962 bytes  s3://air-truth-de-ca1/processed_data/year=2021/month=03/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:30+00:00     11604 bytes  s3://air-truth-de-ca1/processed_data/year=2021/month=04/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:31+00:00     11478 bytes  s3://air-truth-de-ca1/processed_data/year=2021/month=05/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:32+00:00     11476 bytes  s3://air-truth-de-ca1/processed_data/year=2021/month=06/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:33+00:00     11429 bytes  s3://air-truth-de-ca1/processed_data/year=2021/month=07/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:34+00:00     10962 bytes  s3://air-truth-de-ca1/processed_data/year=2021/month=08/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:34+00:00     11708 bytes  s3://air-truth-de-ca1/processed_data/year=2021/month=09/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:35+00:00     11503 bytes  s3://air-truth-de-ca1/processed_data/year=2021/month=10/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:36+00:00     11871 bytes  s3://air-truth-de-ca1/processed_data/year=2021/month=11/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:37+00:00     11784 bytes  s3://air-truth-de-ca1/processed_data/year=2021/month=12/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:38+00:00     11232 bytes  s3://air-truth-de-ca1/processed_data/year=2022/month=01/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:38+00:00     10884 bytes  s3://air-truth-de-ca1/processed_data/year=2022/month=02/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:39+00:00     11017 bytes  s3://air-truth-de-ca1/processed_data/year=2022/month=03/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:40+00:00     11494 bytes  s3://air-truth-de-ca1/processed_data/year=2022/month=04/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:41+00:00     11591 bytes  s3://air-truth-de-ca1/processed_data/year=2022/month=05/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:42+00:00     11391 bytes  s3://air-truth-de-ca1/processed_data/year=2022/month=06/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:42+00:00     11406 bytes  s3://air-truth-de-ca1/processed_data/year=2022/month=07/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:43+00:00     10879 bytes  s3://air-truth-de-ca1/processed_data/year=2022/month=08/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:44+00:00     11193 bytes  s3://air-truth-de-ca1/processed_data/year=2022/month=09/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:45+00:00     11296 bytes  s3://air-truth-de-ca1/processed_data/year=2022/month=10/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:46+00:00     10566 bytes  s3://air-truth-de-ca1/processed_data/year=2025/month=02/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:46+00:00     11939 bytes  s3://air-truth-de-ca1/processed_data/year=2025/month=03/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:47+00:00     11587 bytes  s3://air-truth-de-ca1/processed_data/year=2025/month=04/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:48+00:00     11736 bytes  s3://air-truth-de-ca1/processed_data/year=2025/month=05/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:49+00:00     11662 bytes  s3://air-truth-de-ca1/processed_data/year=2025/month=06/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:49+00:00     11693 bytes  s3://air-truth-de-ca1/processed_data/year=2025/month=07/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:50+00:00     11758 bytes  s3://air-truth-de-ca1/processed_data/year=2025/month=08/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:51+00:00     11571 bytes  s3://air-truth-de-ca1/processed_data/year=2025/month=09/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:52+00:00     11873 bytes  s3://air-truth-de-ca1/processed_data/year=2025/month=10/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:53+00:00     11838 bytes  s3://air-truth-de-ca1/processed_data/year=2025/month=11/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:54+00:00     11726 bytes  s3://air-truth-de-ca1/processed_data/year=2025/month=12/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:55+00:00     11364 bytes  s3://air-truth-de-ca1/processed_data/year=2026/month=01/mumbai_daily_air_quality.parquet
+2026-10-31 16:31:56+00:00     13326 bytes  s3://air-truth-de-ca1/processed_data/year=2026/month=10/mumbai_daily_air_quality.parquet
+
+--- Raw Data Objects (OpenAQ API JSON) ---
+2026-10-31 16:31:09+00:00    470034 bytes  s3://air-truth-de-ca1/raw_data/openaq/ingest_date=2026-10-31/location_3409323_no2_12235911.json
+2026-10-31 16:31:04+00:00    489651 bytes  s3://air-truth-de-ca1/raw_data/openaq/ingest_date=2026-10-31/location_3409323_pm10_12235913.json
+2026-10-31 16:31:01+00:00    497207 bytes  s3://air-truth-de-ca1/raw_data/openaq/ingest_date=2026-10-31/location_3409323_pm25_12235914.json
+2026-10-31 16:30:43+00:00    466173 bytes  s3://air-truth-de-ca1/raw_data/openaq/ingest_date=2026-10-31/location_3409482_no2_12238372.json
+2026-10-31 16:30:38+00:00    488162 bytes  s3://air-truth-de-ca1/raw_data/openaq/ingest_date=2026-10-31/location_3409482_pm10_12238374.json
+2026-10-31 16:30:30+00:00    491679 bytes  s3://air-truth-de-ca1/raw_data/openaq/ingest_date=2026-10-31/location_3409482_pm25_12238375.json
+2026-10-31 16:30:58+00:00    427825 bytes  s3://air-truth-de-ca1/raw_data/openaq/ingest_date=2026-10-31/location_6927_no2_12235923.json
+2026-10-31 15:48:43+00:00         2 bytes  s3://air-truth-de-ca1/raw_data/openaq/ingest_date=2026-10-31/location_6927_no2_19892.json
+2026-10-31 16:30:55+00:00    446607 bytes  s3://air-truth-de-ca1/raw_data/openaq/ingest_date=2026-10-31/location_6927_pm10_12235925.json
+2026-10-31 16:30:51+00:00    449547 bytes  s3://air-truth-de-ca1/raw_data/openaq/ingest_date=2026-10-31/location_6927_pm25_12235926.json
+2026-10-31 16:30:13+00:00    521942 bytes  s3://air-truth-de-ca1/raw_data/openaq/ingest_date=2026-10-31/location_6945_no2_12235831.json
+2026-10-31 15:49:35+00:00         2 bytes  s3://air-truth-de-ca1/raw_data/openaq/ingest_date=2026-10-31/location_6945_no2_20076.json
+2026-10-31 16:30:10+00:00    523160 bytes  s3://air-truth-de-ca1/raw_data/openaq/ingest_date=2026-10-31/location_6945_pm10_12235833.json
+2026-10-31 15:49:35+00:00         2 bytes  s3://air-truth-de-ca1/raw_data/openaq/ingest_date=2026-10-31/location_6945_pm10_19975.json
+2026-10-31 16:30:07+00:00    519140 bytes  s3://air-truth-de-ca1/raw_data/openaq/ingest_date=2026-10-31/location_6945_pm25_12235834.json
+2026-10-31 15:49:37+00:00         2 bytes  s3://air-truth-de-ca1/raw_data/openaq/ingest_date=2026-10-31/location_6945_pm25_19978.json
+2026-10-31 16:30:24+00:00    472798 bytes  s3://air-truth-de-ca1/raw_data/openaq/ingest_date=2026-10-31/location_6967_no2_12243927.json
+2026-10-31 15:48:23+00:00         2 bytes  s3://air-truth-de-ca1/raw_data/openaq/ingest_date=2026-10-31/location_6967_no2_20107.json
+2026-10-31 16:30:19+00:00    484036 bytes  s3://air-truth-de-ca1/raw_data/openaq/ingest_date=2026-10-31/location_6967_pm10_12243929.json
+2026-10-31 15:48:24+00:00         2 bytes  s3://air-truth-de-ca1/raw_data/openaq/ingest_date=2026-10-31/location_6967_pm10_20097.json
+2026-10-31 16:30:17+00:00    483729 bytes  s3://air-truth-de-ca1/raw_data/openaq/ingest_date=2026-10-31/location_6967_pm25_12243930.json
+2026-10-31 15:49:44+00:00         2 bytes  s3://air-truth-de-ca1/raw_data/openaq/ingest_date=2026-10-31/location_6967_pm25_20096.json

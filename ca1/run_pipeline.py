@@ -88,3 +88,4 @@ if __name__ == "__main__":
     except Exception as exc:
         logger.error("Pipeline run failed: %s", exc, exc_info=True)
         sys.exit(1)
+

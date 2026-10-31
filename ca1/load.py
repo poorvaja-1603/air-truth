@@ -77,3 +77,4 @@ def save_and_upload_parquet(df: pd.DataFrame, local_root: Path = PROCESSED_DATA_
 
     logger.info("Parquet storage completed: %s partitions uploaded, %s total bytes", len(uploaded_partitions), total_bytes)
     return uploaded_partitions
+
