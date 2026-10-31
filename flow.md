@@ -1,22 +1,22 @@
 # flow.md
 
-STATUS: PLANNED FLOW. No code exists yet. Every file, entry point, and module below is a plan, not a description of working code. Each section is replaced with real content, including real function names, as its milestone lands.
+STATUS: CA1 IMPLEMENTATION COMPLETE (M1–M7 verified & running). Microproject sections remain PLANNED.
 
 Last updated: 31 October 2026.
 
-## 1. Overall system flow (planned)
+## 1. Overall system flow
 
 Two phases share one domain and one set of rules.
 
-Phase 1 (CA1): OpenAQ and Open-Meteo APIs -> Python extraction -> raw JSON in GCS -> Pandas cleaning -> validation -> partitioned Parquet in GCS.
+Phase 1 (CA1 - COMPLETE): OpenAQ API & Mendeley Historical CSV -> Python extraction (`requests` + retry) -> raw JSON in AWS S3 -> Pandas cleaning (13 rules) -> pre-upload validation -> partitioned Parquet in AWS S3.
 
-Phase 2 (Microproject): OpenAQ and Open-Meteo -> Airbyte -> BigQuery raw -> dbt staging -> dbt intermediate -> dbt marts -> conversational BI. Airflow runs and monitors the whole chain.
+Phase 2 (Microproject - PLANNED): OpenAQ and Open-Meteo -> Airbyte -> BigQuery raw -> dbt staging -> dbt intermediate -> dbt marts -> conversational BI. Airflow runs and monitors the whole chain.
 
 ## 2. Architecture and pipeline flow diagrams
 
 See `plan.md` sections 14 and 15 for the full diagrams. They are kept there to avoid two copies drifting apart.
 
-## 3. Execution entry points (planned)
+## 3. Execution entry points
 
 | Phase | Entry point | What it does |
 |---|---|---|
@@ -24,16 +24,16 @@ See `plan.md` sections 14 and 15 for the full diagrams. They are kept there to a
 | Microproject | Airflow DAG `airtruth_daily` | Triggers Airbyte syncs, then dbt build and test, then a freshness check |
 | Microproject | `microproject/bi_app/app.py` | Streamlit chat interface |
 
-## 4. Order of execution (planned)
+## 4. Order of execution
 
-### CA1
+### CA1 (Implemented)
 
-1. `config` loads environment variables and the station list.
-2. `extract` fetches OpenAQ stations and readings, Open-Meteo weather and model air quality; writes raw JSON.
-3. `transform` reads raw JSON, applies the rule table from `plan.md` section 17.
-4. `validate` checks schema, dtypes, ranges, and row counts.
-5. `load` writes Parquet to GCS partitions and verifies the object exists.
-6. `run_pipeline` logs a summary with counts per stage.
+1. `config` loads environment variables, station coordinates, thresholds, and AWS credentials.
+2. `extract` queries OpenAQ API for active sensors across 5 Mumbai stations; uploads raw JSON to local `data/raw/` and `s3://<bucket>/raw_data/`.
+3. `transform` flattens records, cleans readings (sentinels, negatives, deduplication, 3h short-gap imputation), aggregates to daily level applying the 18/24h rule, flags CPCB NAAQS exceedances, and conforms with the Mendeley baseline dataset.
+4. `validate` enforces pre-upload contract checks (schema, types, non-negativity, physical bounds).
+5. `load` writes Hive-partitioned Snappy Parquet files locally and uploads to `s3://<bucket>/processed_data/year=YYYY/month=MM/` with `head_object` verification.
+6. `run_pipeline` orchestrates the complete pipeline and logs stage row counts.
 
 ### Microproject DAG `airtruth_daily` (planned task order)
 
