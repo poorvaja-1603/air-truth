@@ -38,6 +38,8 @@ Last updated: 31 October 2026 (initial planning, nothing implemented yet).
 | D29 Warehouse (OPEN) | BigQuery preferred, Snowflake as fallback, pending whether a billing-enabled Google Cloud project is possible | BigQuery sandbox is unusable for this stack, so billing is required | Sandbox |
 | D30 CA1 multi-source design | OpenAQ API (key, JSON, paginated) plus the Mendeley CSV (file download, CC BY 4.0), merged into one daily Parquet with a `source` column | Professor asked for multiple sources with different acquisition methods. The CSV adds history back to 2019 and a second real ingestion path, and station name matching and grain alignment are genuine integration work | Open-Meteo as second source (same REST method, and it belongs to the microproject), web scraping as the second source (terms unchecked, extra dependency) |
 | D31 Initial dependencies | `requests`, `pandas`, `python-dotenv` only at M1. `pyarrow` and `boto3` are added at the milestones that need them | Rule of no unneeded dependencies. python-dotenv keeps keys out of code and shell history | Reading env vars only from the shell (error-prone on Windows) |
+| D32 OpenAQ sensor selection | Select active sensors by sorting sensor IDs descending | OpenAQ v3 location endpoints contain both legacy (2019-2022) and active sensors; higher sensor IDs reliably designate current active sensors | Querying all sensors or hardcoding sensor IDs |
+| D33 AWS temporary credentials | Pass `AWS_SESSION_TOKEN` to boto3 client alongside access key and secret key | AWS Academy / Learner Lab utilizes session tokens that rotate with lab sessions | Long-term IAM user credentials |
 
 ## Superseded decisions
 

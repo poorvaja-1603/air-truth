@@ -58,7 +58,7 @@ Any failure stops downstream tasks, so marts are never refreshed from failed or 
 | `ca1/extract.py` | HTTP calls, retry, status handling, rate limiting, raw JSON writing | config |
 | `ca1/transform.py` | Cleaning and derivation rules | raw JSON, `reference/pollutant_thresholds.csv` |
 | `ca1/validate.py` | Pre-upload checks | transform output |
-| `ca1/load.py` | Upload Parquet to GCS, verify | validated frames, GCS credentials |
+| `ca1/load.py` | Upload Parquet to AWS S3, verify object size/timestamp | validated frames, S3 credentials |
 | `ca1/run_pipeline.py` | Orchestrate the four stages and log counts | all of the above |
 | `reference/pollutant_thresholds.csv` | Single source of thresholds | read by `transform.py` and loaded as a dbt seed |
 | `microproject/airbyte/` | Connector and connection notes, Builder export | Airbyte workspace |
@@ -70,7 +70,25 @@ Any failure stops downstream tasks, so marts are never refreshed from failed or 
 
 ## 6. Important functions and their responsibilities
 
-To be filled in when code exists. Functions are not listed here until they are written.
+### `ca1/extract.py`
+- `make_request(session, url, params)`: HTTP GET with exponential backoff on retryable status codes (429, 500, 502, 503, 504), rate limit reset header handling, and fast failure on 401/403.
+- `get_station_sensors(session, location_id)`: Fetches station metadata from OpenAQ and selects the active sensor IDs for PM2.5, PM10, and NO2 by descending sensor ID.
+- `extract_station_hourly(session, sensor_id, start_iso, end_iso)`: Retrieves hourly readings for a single sensor within the 30-day window.
+- `extract_all()`: Orchestrates station queries, saves raw JSON locally and uploads raw JSON to AWS S3 `raw_data/` layer.
+
+### `ca1/transform.py`
+- `load_thresholds(path)`: Reads CPCB NAAQS 24h limits from `reference/pollutant_thresholds.csv`.
+- `parse_openaq_hourly_records(raw_records)`: Flattens raw JSON structures into a Pandas DataFrame.
+- `clean_openaq_hourly(df)`: Enforces datatypes, parses UTC/IST timestamps, converts negative values and extreme outliers (> 1000/2000) to NaN, drops duplicate readings, and performs short-gap forward-fill imputation (limit=3 hours) tagging `is_imputed`.
+- `aggregate_openaq_daily(hourly_df, thresholds)`: Computes daily means under the 18/24h completeness rule and derives exceedance flags.
+- `load_mendeley_historical(thresholds)`: Ingests and cleans external baseline dataset (5,437 station-days, 2019-2026).
+- `conform_and_merge_datasets(openaq_daily, mendeley_daily)`: Unifies both sources into a conformed daily schema with a `source` column.
+
+### `ca1/validate.py`
+- `validate_dataset(df)`: Enforces column presence, explicit data types, non-negativity, reasonable range bounds, and non-empty rows.
+
+### `ca1/load.py`
+- `save_and_upload_parquet(df)`: Writes Snappy-compressed Parquet partitioned by `year=YYYY/month=MM/` and uploads to `s3://<bucket>/processed_data/` with post-upload verification via `head_object`.
 
 ## 7. Data passed between components (planned)
 
@@ -86,14 +104,14 @@ To be filled in when code exists. Functions are not listed here until they are w
 
 ## 8. Where intermediate data is stored (planned)
 
-- CA1 raw: `gs://<bucket>/raw/...` and a local gitignored `data/raw/` copy
+- CA1 raw: `s3://<bucket>/raw_data/...` and a local gitignored `data/raw/` copy
 - CA1 cleaned frames: in memory, then written as Parquet
 - Microproject raw: `airtruth_raw` dataset
 - dbt intermediate: `airtruth_intermediate` views
 
 ## 9. Where final outputs appear (planned)
 
-- CA1: `gs://<bucket>/processed/<table>/year=YYYY/month=MM/*.parquet`, plus the run log
+- CA1: `s3://<bucket>/processed_data/year=YYYY/month=MM/mumbai_daily_air_quality.parquet`, local `data/processed/`, plus the run log
 - Microproject: `airtruth_marts` tables, Airflow run history, Streamlit answers, BI query log in `airtruth_ops`
 
 ## 10. How Airflow coordinates the microproject (planned)
@@ -129,3 +147,4 @@ mart_station_daily_air_quality  mart_model_vs_ground_daily  mart_pollution_weath
 |---|---|
 | 31 Oct 2026 | Initial planned flow created |
 | 31 Oct 2026 | Added `ca1/discover_stations.py` and `ca1/inspect_csv.py` to CA1 file responsibilities |
+| 31 Oct 2026 | Implemented CA1 pipeline modules (extract, transform, validate, load, run_pipeline, thresholds) for M1-M7 |

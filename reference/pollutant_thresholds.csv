@@ -1,0 +1,7 @@
+parameter,averaging_period_hours,threshold_ugm3,standard
+pm25,24,60.0,CPCB NAAQS
+pm10,24,100.0,CPCB NAAQS
+no2,24,80.0,CPCB NAAQS
+so2,24,80.0,CPCB NAAQS
+co,8,2000.0,CPCB NAAQS
+o3,8,100.0,CPCB NAAQS

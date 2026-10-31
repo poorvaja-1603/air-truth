@@ -3,4 +3,5 @@
 !reference/*.json
 data/
 __pycache__/
+venv/
 .venv/
