@@ -2,7 +2,7 @@
 
 Technical decision log for AirTruth Mumbai. Format follows the brief. Status words such as PENDING appear inside the second column. Superseded decisions are kept and marked.
 
-Last updated: 31 October 2026 (initial planning, nothing implemented yet).
+Last updated: 31 October 2026 (CA1 implementation complete, microproject pending).
 
 | Decision | Selected Approach | Reason | Alternative Considered |
 |---|---|---|---|
@@ -32,7 +32,6 @@ Last updated: 31 October 2026 (initial planning, nothing implemented yet).
 | D24 Use of Airflow in CA1 | Not used. Terminal logs as evidence | CA1 brief accepts terminal output. Keeps CA1 small and avoids pulling microproject work forward | Airflow DAG in CA1 (extra effort, not required) |
 | D25 Excluded technologies | No Kafka, Spark, Kubernetes management | Data is small and hourly; no requirement justifies them | Streaming stack (complexity without benefit) |
 | D26 Scope-cut order | Drop `mart_pollution_weather_drivers`, then chart auto-generation, then NO2. The required stack is never cut | Protects the explicit microproject requirements if time runs short | Cutting a required tool |
-
 | D27 CA1 cloud storage | AWS S3, bucket layout `processed_data/year=YYYY/month=MM/`, least-privilege IAM user | User already has AWS credits and the CA1 brief allows S3. Supersedes D07. Loses the single-cloud convenience, so BigQuery loading from Parquet is no longer a fallback | GCS (needs a card-backed Google Cloud account just for CA1) |
 | D28 CA1 scope | CA1 only does what the CA1 PDF lists: OpenAQ only, about 5 stations, 30 days, Pandas cleaning, Parquet to S3, evidence, report, video | Two-day window and the instruction to include nothing beyond the CA1 document. Weather, model data, and quality scoring move to the microproject | Full three-source CA1 (too much for 2 days, includes non-CA1 items) |
 | D29 Warehouse (OPEN) | BigQuery preferred, Snowflake as fallback, pending whether a billing-enabled Google Cloud project is possible | BigQuery sandbox is unusable for this stack, so billing is required | Sandbox |
@@ -44,3 +43,4 @@ Last updated: 31 October 2026 (initial planning, nothing implemented yet).
 ## Superseded decisions
 
 - D07 (GCS for CA1): superseded by D27 on 31 Oct 2026, because AWS credits are available.
+
